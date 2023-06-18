@@ -8,6 +8,19 @@ import java.util.List;
 @Entity
 @Table(name = "blog")
 public class Blog {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String title;
+    private String content;
+    private Date pubDate;
+
+    @ManyToOne
+    @JoinColumn
+    private User user;
+
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
+    private List<Image> imageList = new ArrayList<>();
     public Blog() {
     }
 
@@ -19,7 +32,7 @@ public class Blog {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.publishDate = publishDate;
+        this.pubDate = publishDate;
         this.user = user;
         this.imageList = imageList;
     }
@@ -44,12 +57,12 @@ public class Blog {
         this.content = content;
     }
 
-    public Date getPublishDate() {
-        return publishDate;
+    public Date getPubDate() {
+        return pubDate;
     }
 
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
+    public void setPubDate(Date publishDate) {
+        this.pubDate = publishDate;
     }
 
     public User getUser() {
@@ -67,18 +80,4 @@ public class Blog {
     public void setImageList(List<Image> imageList) {
         this.imageList = imageList;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String title;
-    private String content;
-    private Date publishDate;
-
-    @ManyToOne
-    @JoinColumn
-    private User user;
-
-    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-    private List<Image> imageList = new ArrayList<>();
 }
