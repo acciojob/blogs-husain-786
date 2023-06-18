@@ -29,13 +29,16 @@ public class BlogService {
         blog.setTitle(title);
         blog.setContent(content);
         blog.setPubDate(new Date());
+        blog = blogRepository1.save(blog);
         blog.setUser(user);
         user.getBlogList().add(blog);
 
-        user = userRepository1.save(user);
+//        user = userRepository1.save(user);
 
         System.out.println("Save: "+user.getBlogList());
-        return blog;
+
+        return blogRepository1.save(blog);
+//        return blog;
     }
 
     public void deleteBlog(int blogId){

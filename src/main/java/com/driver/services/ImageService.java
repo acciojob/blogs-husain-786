@@ -37,9 +37,11 @@ public class ImageService {
 
         Blog blog = image.getBlog();
 
+        imageRepository2.delete(image);
+
         blog.getImageList().remove(image);
 
-        blogRepository2.save(blog);
+//        blogRepository2.save(blog);
     }
 
     public int countImagesInScreen(Integer id, String screenDimensions) {
