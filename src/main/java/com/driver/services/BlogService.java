@@ -42,12 +42,12 @@ public class BlogService {
         Blog blog = blogRepository1.findById(blogId).get();
 
         User user = blog.getUser();
-        System.out.println("Delete1: "+user.getBlogList());
+//        System.out.println("Delete1: "+user.getBlogList());
 
         user.getBlogList().remove(blog);
-        blogRepository1.delete(blog);
+        blogRepository1.deleteById(blogId);
 
-        System.out.println("Delete2: "+user.getBlogList());
+//        System.out.println("Delete2: "+user.getBlogList());
 
         userRepository1.save(user);
     }
