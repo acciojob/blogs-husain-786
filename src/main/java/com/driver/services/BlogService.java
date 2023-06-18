@@ -32,8 +32,6 @@ public class BlogService {
         blog.setUser(user);
         user.getBlogList().add(blog);
 
-        user = userRepository1.save(user);
-
         userRepository1.save(user);
 
         return blog;
